@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Beware of Predators: Exploring Grooming through Fiction. Stories from the Sunset Dreams Lounge.">
+<title>Beware of Predators</title>
+<script src="stories.js"></script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;1,400&family=Italiana&family=IBM+Plex+Mono:wght@300;400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void:#07060a;
+    --ink:#0e0b10;
+    --bruise:#1a1018;
+    --blood:#5c0f17;
+    --ember:#b2432a;
+    --neon:#e8794a;
+    --haze:#c9a98a;
+    --bone:#d9cfc4;
+    --ash:#6e6468;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{min-height:100%;background:var(--void);color:var(--bone)}
+  body{
+    font-family:"Cormorant Garamond",Georgia,serif;
+    background:
+      radial-gradient(ellipse 80% 50% at 50% -10%, rgba(178,67,42,.18), transparent 70%),
+      radial-gradient(ellipse 60% 40% at 50% 110%, rgba(92,15,23,.35), transparent 70%),
+      var(--void);
+    overflow-x:hidden;
+  }
+  /* film grain */
+  body::before{
+    content:"";position:fixed;inset:-50%;pointer-events:none;z-index:50;opacity:.07;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='3' stitchTiles='stitch'/></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+    animation:grain 1s steps(6) infinite;
+  }
+  @keyframes grain{
+    0%{transform:translate(0,0)}20%{transform:translate(-3%,2%)}40%{transform:translate(2%,-4%)}
+    60%{transform:translate(-4%,-1%)}80%{transform:translate(3%,3%)}100%{transform:translate(0,0)}
+  }
+  /* vignette */
+  body::after{
+    content:"";position:fixed;inset:0;pointer-events:none;z-index:49;
+    background:radial-gradient(ellipse at center, transparent 45%, rgba(0,0,0,.85) 100%);
+  }
+
+  main{position:relative;z-index:1;max-width:760px;margin:0 auto;padding:12vh 28px 16vh;text-align:center}
+
+  .warning{
+    font-family:"IBM Plex Mono",monospace;font-weight:300;font-size:11px;letter-spacing:.42em;
+    text-transform:uppercase;color:var(--ember);opacity:.85;margin-bottom:28px;
+  }
+  h1{
+    font-family:"Italiana",serif;font-weight:400;
+    font-size:clamp(44px,9vw,92px);line-height:.95;letter-spacing:.02em;color:var(--bone);
+    text-shadow:0 0 40px rgba(178,67,42,.25);
+  }
+  .sub{
+    margin-top:22px;font-style:italic;font-size:clamp(18px,2.6vw,23px);color:var(--haze);opacity:.8;
+  }
+
+  .sign{
+    margin:9vh auto 0;display:inline-block;
+    font-family:"Italiana",serif;font-size:clamp(22px,4vw,34px);letter-spacing:.18em;
+    color:var(--neon);
+    text-shadow:0 0 6px rgba(232,121,74,.9),0 0 18px rgba(232,121,74,.55),0 0 48px rgba(178,67,42,.5);
+    animation:flicker 7s infinite;
+  }
+  .sign span{display:block;font-size:.42em;letter-spacing:.6em;margin-top:8px;opacity:.75}
+  @keyframes flicker{
+    0%,18%,22%,25%,53%,57%,100%{opacity:1}
+    20%,24%,55%{opacity:.25}
+    70%{opacity:.92}72%{opacity:.4}73%{opacity:1}
+  }
+
+  .stage{margin-top:9vh;min-height:120px;display:flex;flex-direction:column;align-items:center;gap:18px}
+
+  button{
+    font-family:"IBM Plex Mono",monospace;font-weight:400;font-size:13px;letter-spacing:.32em;
+    text-transform:uppercase;cursor:pointer;
+    background:transparent;color:var(--bone);
+    border:1px solid rgba(217,207,196,.35);
+    padding:18px 34px;transition:all .5s ease;
+  }
+  button:hover{border-color:var(--ember);color:#fff;box-shadow:0 0 30px rgba(178,67,42,.3), inset 0 0 20px rgba(92,15,23,.4)}
+  button:focus-visible{outline:1px solid var(--neon);outline-offset:4px}
+
+  #confirm{
+    border-color:var(--blood);color:var(--neon);background:rgba(92,15,23,.18);
+    animation:pulse 2.4s ease-in-out infinite;
+  }
+  #confirm:hover{background:rgba(92,15,23,.45)}
+  @keyframes pulse{0%,100%{box-shadow:0 0 0 rgba(178,67,42,0)}50%{box-shadow:0 0 34px rgba(178,67,42,.35)}}
+
+  .whisper{
+    font-family:"IBM Plex Mono",monospace;font-weight:300;font-size:11px;letter-spacing:.24em;
+    color:var(--ash);text-transform:lowercase;min-height:1em;
+  }
+  .back{background:none;border:none;padding:4px;font-size:11px;letter-spacing:.24em;color:var(--ash);text-transform:lowercase}
+  .back:hover{box-shadow:none;color:var(--bone)}
+
+  .hidden{display:none !important}
+  .fade-in{animation:fade 1.2s ease forwards}
+  @keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+  article{
+    margin-top:7vh;text-align:left;
+    border-top:1px solid rgba(92,15,23,.7);padding-top:48px;
+  }
+  article h2{
+    font-family:"Italiana",serif;font-weight:400;font-size:clamp(28px,4.5vw,40px);
+    color:var(--bone);text-align:center;margin-bottom:38px;letter-spacing:.03em;
+  }
+  #story{font-size:clamp(19px,2.3vw,22px);line-height:1.68;color:#cfc4b8}
+  #story p{margin-bottom:1.15em}
+  #story p:first-child::first-letter{
+    font-family:"Italiana",serif;float:left;font-size:3.6em;line-height:.85;
+    padding:6px 10px 0 0;color:var(--neon);text-shadow:0 0 14px rgba(232,121,74,.5);
+  }
+  .cursor{display:inline-block;width:.5em;height:1em;background:var(--ember);vertical-align:-2px;animation:blink 1s steps(1) infinite;margin-left:2px}
+  @keyframes blink{50%{opacity:0}}
+
+  .after{margin-top:56px;text-align:center}
+  .count{
+    font-family:"IBM Plex Mono",monospace;font-weight:300;font-size:10px;letter-spacing:.4em;
+    text-transform:uppercase;color:var(--blood);margin-top:18px;
+  }
+
+  .loading{font-style:italic;font-size:20px;color:var(--haze);opacity:.7}
+  .loading::after{content:"";animation:dots 1.6s steps(4) infinite}
+  @keyframes dots{0%{content:""}25%{content:"."}50%{content:".."}75%{content:"..."}}
+
+  footer{
+    position:relative;z-index:1;text-align:center;padding:0 24px 48px;
+    font-family:"IBM Plex Mono",monospace;font-weight:300;font-size:10px;letter-spacing:.3em;
+    text-transform:uppercase;color:#3b3236;
+  }
+  @media (prefers-reduced-motion:reduce){
+    body::before,.sign,#confirm,.cursor{animation:none}
+  }
+</style>
+</head>
+<body>
+<main>
+  <p class="warning">Content warning &middot; manipulation &middot; predatory behavior</p>
+  <h1>Beware of Predators</h1>
+  <p class="sub">Exploring grooming through fiction</p>
+
+  <div class="sign">Sunset Dreams<span>Lounge</span></div>
+
+  <div class="stage" id="stage">
+    <button id="generate">Generate the Narrative</button>
+    <button id="confirm" class="hidden">Are you sure?</button>
+    <button id="cancel" class="back hidden">no. leave it.</button>
+    <p class="whisper" id="whisper"></p>
+  </div>
+
+  <article id="out" class="hidden">
+    <h2 id="title"></h2>
+    <div id="story"></div>
+    <div class="after hidden" id="after">
+      <button id="again">Generate Another</button>
+      <p class="count" id="count"></p>
+    </div>
+  </article>
+</main>
+<footer>A work of fiction. Every patron is an adult. None of them chose this.</footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const gen = $("generate"), conf = $("confirm"), cancel = $("cancel"), whisper = $("whisper");
+  const out = $("out"), titleEl = $("title"), storyEl = $("story"), after = $("after"), again = $("again"), countEl = $("count");
+
+  const STORIES = window.SUNSET_STORIES || [];
+  const BAG_KEY = "sdl-bag";
+  // Shuffle bag: every story is told once before any repeats.
+  function nextStory(){
+    let bag = [];
+    try { bag = JSON.parse(sessionStorage.getItem(BAG_KEY) || "[]"); } catch(e) {}
+    bag = bag.filter(i => Number.isInteger(i) && i >= 0 && i < STORIES.length);
+    if (!bag.length){
+      bag = STORIES.map((_, i) => i);
+      for (let i = bag.length - 1; i > 0; i--){ const j = Math.floor(Math.random() * (i + 1)); [bag[i], bag[j]] = [bag[j], bag[i]]; }
+      if (window.__lastStory !== undefined && bag[bag.length - 1] === window.__lastStory && bag.length > 1){ [bag[0], bag[bag.length - 1]] = [bag[bag.length - 1], bag[0]]; }
+    }
+    const idx = bag.pop();
+    window.__lastStory = idx;
+    try { sessionStorage.setItem(BAG_KEY, JSON.stringify(bag)); } catch(e) {}
+    return STORIES[idx];
+  }
+  const sleep = ms => new Promise(r => setTimeout(r, ms));
+  const reduceMotion = window.matchMedia && matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  let busy = false, told = 0;
+
+  const confirmWhispers = [
+    "he's been expecting you.",
+    "someone has to watch.",
+    "you came back.",
+    "the door is already open.",
+    "you could still walk away.",
+    "he remembers your name."
+  ];
+  const afterWhispers = [
+    "you wanted to see it.",
+    "you pressed it twice.",
+    "and you stayed until the end.",
+    "you didn't look away.",
+    "he'd like that about you."
+  ];
+  const pick = a => a[Math.floor(Math.random() * a.length)];
+
+  function setWhisper(t){ whisper.textContent = t; whisper.classList.remove("fade-in"); void whisper.offsetWidth; whisper.classList.add("fade-in"); }
+
+  function askAgain(){
+    if (busy) return;
+    gen.classList.add("hidden");
+    after.classList.add("hidden");
+    conf.classList.remove("hidden");
+    cancel.classList.remove("hidden");
+    conf.classList.add("fade-in");
+    setWhisper(pick(confirmWhispers));
+    conf.focus();
+  }
+
+  gen.addEventListener("click", askAgain);
+  again.addEventListener("click", () => {
+    $("stage").scrollIntoView({behavior:"smooth", block:"center"});
+    askAgain();
+  });
+
+  cancel.addEventListener("click", () => {
+    conf.classList.add("hidden"); cancel.classList.add("hidden");
+    setWhisper("but you'll be back.");
+    if (told === 0) gen.classList.remove("hidden");
+    else { gen.textContent = "Generate the Narrative"; gen.classList.remove("hidden"); }
+  });
+
+  function render(text, streaming){
+    const t = text.replace(/\r/g,"").trim();
+    const nl = t.indexOf("\n");
+    let title = "", body = "";
+    if (nl === -1){ title = streaming ? t : ""; body = streaming ? "" : t; }
+    else { title = t.slice(0, nl).replace(/^#+\s*|^title:\s*/i,"").replace(/^["*]+|["*]+$/g,"").trim(); body = t.slice(nl+1).trim(); }
+    titleEl.textContent = title;
+    storyEl.innerHTML = "";
+    const paras = body.split(/\n\s*\n/).filter(Boolean);
+    paras.forEach((p, i) => {
+      const el = document.createElement("p");
+      el.textContent = p.replace(/\n/g," ");
+      if (streaming && i === paras.length - 1){ const c = document.createElement("span"); c.className="cursor"; el.appendChild(c); }
+      storyEl.appendChild(el);
+    });
+  }
+
+  conf.addEventListener("click", async () => {
+    if (busy) return;
+    busy = true;
+    conf.classList.add("hidden"); cancel.classList.add("hidden");
+    setWhisper("you asked for this.");
+    out.classList.remove("hidden");
+    after.classList.add("hidden");
+    titleEl.textContent = "";
+    storyEl.innerHTML = '<p class="loading">The lights come down</p>';
+
+    try{
+      if (!STORIES.length) throw new Error("no stories");
+      const story = nextStory();
+      const full = story.title + "\n\n" + story.body;
+      await sleep(1400);
+      out.scrollIntoView({behavior:"smooth", block:"start"});
+      if (reduceMotion){ render(full, false); }
+      else {
+        // Typewriter reveal; click the story to skip ahead.
+        let skip = false;
+        const onSkip = () => { skip = true; };
+        storyEl.addEventListener("click", onSkip, {once:true});
+        titleEl.addEventListener("click", onSkip, {once:true});
+        for (let i = 0; i <= full.length && !skip; i += 3){
+          render(full.slice(0, i), true);
+          await sleep(14);
+        }
+        render(full, false);
+      }
+      told++;
+      countEl.textContent = told === 1 ? "one story you asked to hear" : `${told} stories you asked to hear`;
+      after.classList.remove("hidden");
+      after.classList.add("fade-in");
+      setWhisper(pick(afterWhispers));
+    }catch(e){
+      storyEl.innerHTML = "";
+      const p = document.createElement("p"); p.className = "loading"; p.style.animation = "none";
+      p.textContent = "The lounge went dark. Try again in a moment.";
+      storyEl.appendChild(p);
+      after.classList.remove("hidden");
+    }finally{
+      busy = false;
+    }
+  });
+})();
+</script>
+</body>
+</html>
